@@ -1,25 +1,41 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject _Enemy;
-    [SerializeField]
-    private float s_SawnTime = 3f;
-    [SerializeField]
-    private Transform[] _SpawnPoints;
+    [SerializeField] private Terrain _Terrain;
+    [SerializeField] private GameObject _Wizard;
+    private Vector3 _WizardPosition;
+    [SerializeField] private GameObject[] _Enemies;
+    [SerializeField] private float _SpawnTime = 3f;
+    [SerializeField] private float _Radius = 10f;
 
 
     void Start()
     {
-        InvokeRepeating("Spawn", s_SawnTime, s_SawnTime);
+        _WizardPosition = _Wizard.transform.position;
+        InvokeRepeating("Spawn", _SpawnTime, _SpawnTime);
     }
 
 
     void Spawn()
     {
-        int spawnPointIndex = Random.Range(0, _SpawnPoints.Length);
-        
-        Instantiate(_Enemy, _SpawnPoints[spawnPointIndex].position, _SpawnPoints[spawnPointIndex].rotation);
+        Vector3 position = RandomCircle(_WizardPosition, _Radius);
+        Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, _WizardPosition - position);
+        GameObject enemy = _Enemies[Random.Range(0, _Enemies.Length)];
+        Debug.Log("Instantiating enemy " + enemy.name + " on position " + position + " and rotation " + rotation);
+        Instantiate(enemy, position, rotation);
+    }
+
+    Vector3 RandomCircle(Vector3 center, float radius)
+    {
+        float angle = Random.value * 360;
+        Vector3 position;
+        position.x = center.x + radius * Mathf.Sin(angle * Mathf.Deg2Rad);
+        position.z = center.z + radius * Mathf.Cos(angle * Mathf.Deg2Rad);
+        position.y = center.y;
+        position.y = _Terrain.SampleHeight(position);
+        return position;
     }
 }
