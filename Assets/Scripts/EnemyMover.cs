@@ -9,11 +9,15 @@ public class EnemyMover : MonoBehaviour {
     private NavMeshAgent _Nav;
 
     void Awake () {
-        _WizardPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
         _Nav = GetComponent<NavMeshAgent>();
     }
 	
 	void Update () {
         _Nav.SetDestination(_WizardPosition);
+    }
+
+    public void SetWizardPosition(Vector3 wizardPosition)
+    {
+        _WizardPosition = wizardPosition;
     }
 }
