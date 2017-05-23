@@ -11,11 +11,10 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float _SpawnTime = 3f;
     [SerializeField] private float _Radius = 10f;
 
-
     void Start()
     {
         _WizardPosition = _Wizard.transform.position;
-        InvokeRepeating("Spawn", _SpawnTime, _SpawnTime);
+        InvokeRepeating("Spawn", 1, _SpawnTime);
     }
 
 
