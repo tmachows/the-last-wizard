@@ -1,10 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEngine;
 
 public static class MessageDispatcher
 {
+    public static void Send<T>(T message, Vector3 position, float radius) where T : class
+    {
+        var colliders = Physics.OverlapSphere(position, radius);
+
+        var objects = colliders.Select(x => x.gameObject);
+
+        foreach (var obj in objects)
+        {
+            Send(message, obj);
+        }
+    }
+
     public static void Send<T>(T message, IEnumerable<GameObject> objects) where T : class
     {
         foreach (var obj in objects)

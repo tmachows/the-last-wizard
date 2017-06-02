@@ -26,6 +26,7 @@ public class EnemyMover : MonoBehaviour {
 	    if (Vector3.Distance(transform.position, _WizardPosition) > 1.2)
 	    {
 	        _Nav.SetDestination(_WizardPosition);
+	        _IsEnemyMoving = true;
 	    }
 	    else
         {
