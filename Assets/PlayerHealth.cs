@@ -7,11 +7,6 @@ public class DamagePlayerMessage
     public float Value;
 }
 
-public class GameOverMessage
-{
-    public Component Sender;
-}
-
 public class PlayerHealth : MonoBehaviour {
 
 
@@ -41,13 +36,14 @@ public class PlayerHealth : MonoBehaviour {
     {
 
         _Value -= message.Value;
-        if (_Value < 0)
+        if (_Value < 0.0f)
         {
+            Debug.Log("health < 0");
             var gameOverMessage = new GameOverMessage()
             {
                 Sender = this
             };
-            MessageDispatcher.Send(gameOverMessage, gameObject);
+            MessageDispatcher.Send(gameOverMessage, transform.position, 3.0f);
         }
     }
 }

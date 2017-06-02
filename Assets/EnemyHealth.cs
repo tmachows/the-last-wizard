@@ -17,6 +17,12 @@ public class EnemyHealth : MonoBehaviour
         _Health -= message._Value;
         if (_Health < 0)
         {
+            var enemyDeathMessage = new KilledEnemyMessage
+            {
+                Points = 10
+            };
+            MessageDispatcher.Send(enemyDeathMessage, transform.position, 20.0f);
+
             Destroy(gameObject);
         }
     }
