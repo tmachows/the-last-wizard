@@ -36,6 +36,7 @@ public class SpellCaster : MonoBehaviour
     [SerializeField] private float _Radius = 5.0f;
     [SerializeField] private float _FirePower = 30.0f;
     [SerializeField] private float _WaterPower = 30.0f;
+    [SerializeField] private float _HealingPower = 10.0f;
 
     void Awake()
     {
@@ -76,7 +77,8 @@ public class SpellCaster : MonoBehaviour
         {
             var message = new HealingSpellMessage()
             {
-                Sender = this
+                Sender = this,
+                Value = _HealingPower
             };
             CastSpell(_HealingSpell, message);
         }	

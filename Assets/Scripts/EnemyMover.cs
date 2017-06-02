@@ -13,6 +13,9 @@ public class EnemyMover : MonoBehaviour {
     private AudioSource _BattleAudioSource;
     private bool _IsEnemyMoving;
 
+    [SerializeField] private float _AttackInterval = 1.5f;
+    private float _TimeToNextAttack;
+
     void Awake () {
         _Nav = GetComponent<NavMeshAgent>();
         _Animator = GetComponent<Animator>();
@@ -20,6 +23,7 @@ public class EnemyMover : MonoBehaviour {
         _MovingAudioSource = audioSources[0];
         _BattleAudioSource = audioSources[1];
         _IsEnemyMoving = true;
+        _TimeToNextAttack = _AttackInterval;
     }
 	
 	void Update () {
@@ -37,7 +41,15 @@ public class EnemyMover : MonoBehaviour {
             }
             _IsEnemyMoving = false;
             _Animator.SetBool("CanReachHero", true);
-	    }
+
+            _TimeToNextAttack -= Time.deltaTime;
+            if (_TimeToNextAttack < 0)
+            {
+                var message = new AttackMessage();
+                MessageDispatcher.Send(message, gameObject);
+                _TimeToNextAttack = _AttackInterval;
+            }
+        }
     }
 
     public void SetWizardPosition(Vector3 wizardPosition)

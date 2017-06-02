@@ -14,6 +14,7 @@ public class GameOverMessage
 
 public class PlayerHealth : MonoBehaviour {
 
+
     [SerializeField]
     private float _Value = 100.0f;
 
@@ -38,6 +39,7 @@ public class PlayerHealth : MonoBehaviour {
 
     private void Receive(DamagePlayerMessage message)
     {
+
         _Value -= message.Value;
         if (_Value < 0)
         {
