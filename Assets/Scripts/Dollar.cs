@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 #region Helpers
 
@@ -35,6 +36,7 @@ public class DollarUtil
         var I = PathLength(points) / (n - 1);
         float D = 0f;
         var newPoints = new LinkedList<Point>();
+        newPoints.AddLast(points.First.Value);
         var p = points.First.Next;
         while (p != null)
         {
@@ -61,6 +63,11 @@ public class DollarUtil
             q.y = points.Last.Value.y;
             newPoints.AddLast(q);
         }
+        Debug.Log(newPoints.Count);
+        foreach(var dp in newPoints)
+        {
+            Debug.Log("x: " + dp.x + ", y: " + dp.y);
+        }
         return newPoints;
     }
 
@@ -73,6 +80,7 @@ public class DollarUtil
             d += Distance(p.Previous.Value, p.Value);
             p = p.Next;
         }
+        Debug.Log("PathLength: " + d);
         return d;
     }
 
@@ -388,12 +396,13 @@ public class DollarWrapper
     public List<Unistroke> PopulateUnistrokes()
     {
         var list = new List<Unistroke>();
-        /*
+        
         #region triangle
         var pointList = new LinkedList<Point>();
         pointList.AddLast(new Point() { x = 137, y = 139 }); pointList.AddLast(new Point() { x = 135, y = 141 }); pointList.AddLast(new Point() { x = 133, y = 144 }); pointList.AddLast(new Point() { x = 132, y = 146 }); pointList.AddLast(new Point() { x = 130, y = 149 }); pointList.AddLast(new Point() { x = 128, y = 151 }); pointList.AddLast(new Point() { x = 126, y = 155 }); pointList.AddLast(new Point() { x = 123, y = 160 }); pointList.AddLast(new Point() { x = 120, y = 166 }); pointList.AddLast(new Point() { x = 116, y = 171 }); pointList.AddLast(new Point() { x = 112, y = 177 }); pointList.AddLast(new Point() { x = 107, y = 183 }); pointList.AddLast(new Point() { x = 102, y = 188 }); pointList.AddLast(new Point() { x = 100, y = 191 }); pointList.AddLast(new Point() { x = 95, y = 195 }); pointList.AddLast(new Point() { x = 90, y = 199 }); pointList.AddLast(new Point() { x = 86, y = 203 }); pointList.AddLast(new Point() { x = 82, y = 206 }); pointList.AddLast(new Point() { x = 80, y = 209 }); pointList.AddLast(new Point() { x = 75, y = 213 }); pointList.AddLast(new Point() { x = 73, y = 213 }); pointList.AddLast(new Point() { x = 70, y = 216 }); pointList.AddLast(new Point() { x = 67, y = 219 }); pointList.AddLast(new Point() { x = 64, y = 221 }); pointList.AddLast(new Point() { x = 61, y = 223 }); pointList.AddLast(new Point() { x = 60, y = 225 }); pointList.AddLast(new Point() { x = 62, y = 226 }); pointList.AddLast(new Point() { x = 65, y = 225 }); pointList.AddLast(new Point() { x = 67, y = 226 }); pointList.AddLast(new Point() { x = 74, y = 226 }); pointList.AddLast(new Point() { x = 77, y = 227 }); pointList.AddLast(new Point() { x = 85, y = 229 }); pointList.AddLast(new Point() { x = 91, y = 230 }); pointList.AddLast(new Point() { x = 99, y = 231 }); pointList.AddLast(new Point() { x = 108, y = 232 }); pointList.AddLast(new Point() { x = 116, y = 233 }); pointList.AddLast(new Point() { x = 125, y = 233 }); pointList.AddLast(new Point() { x = 134, y = 234 }); pointList.AddLast(new Point() { x = 145, y = 233 }); pointList.AddLast(new Point() { x = 153, y = 232 }); pointList.AddLast(new Point() { x = 160, y = 233 }); pointList.AddLast(new Point() { x = 170, y = 234 }); pointList.AddLast(new Point() { x = 177, y = 235 }); pointList.AddLast(new Point() { x = 179, y = 236 }); pointList.AddLast(new Point() { x = 186, y = 237 }); pointList.AddLast(new Point() { x = 193, y = 238 }); pointList.AddLast(new Point() { x = 198, y = 239 }); pointList.AddLast(new Point() { x = 200, y = 237 }); pointList.AddLast(new Point() { x = 202, y = 239 }); pointList.AddLast(new Point() { x = 204, y = 238 }); pointList.AddLast(new Point() { x = 206, y = 234 }); pointList.AddLast(new Point() { x = 205, y = 230 }); pointList.AddLast(new Point() { x = 202, y = 222 }); pointList.AddLast(new Point() { x = 197, y = 216 }); pointList.AddLast(new Point() { x = 192, y = 207 }); pointList.AddLast(new Point() { x = 186, y = 198 }); pointList.AddLast(new Point() { x = 179, y = 189 }); pointList.AddLast(new Point() { x = 174, y = 183 }); pointList.AddLast(new Point() { x = 170, y = 178 }); pointList.AddLast(new Point() { x = 164, y = 171 }); pointList.AddLast(new Point() { x = 161, y = 168 }); pointList.AddLast(new Point() { x = 154, y = 160 }); pointList.AddLast(new Point() { x = 148, y = 155 }); pointList.AddLast(new Point() { x = 143, y = 150 }); pointList.AddLast(new Point() { x = 138, y = 148 }); pointList.AddLast(new Point() { x = 136, y = 148 });
         list.Add(new Unistroke("triangle", pointList));
         #endregion
+        /*
         #region x
         pointList = new LinkedList<Point>();
         pointList.AddLast(new Point() { x = 87, y = 142 }); pointList.AddLast(new Point() { x = 89, y = 145 }); pointList.AddLast(new Point() { x = 91, y = 148 }); pointList.AddLast(new Point() { x = 93, y = 151 }); pointList.AddLast(new Point() { x = 96, y = 155 }); pointList.AddLast(new Point() { x = 98, y = 157 }); pointList.AddLast(new Point() { x = 100, y = 160 }); pointList.AddLast(new Point() { x = 102, y = 162 }); pointList.AddLast(new Point() { x = 106, y = 167 }); pointList.AddLast(new Point() { x = 108, y = 169 }); pointList.AddLast(new Point() { x = 110, y = 171 }); pointList.AddLast(new Point() { x = 115, y = 177 }); pointList.AddLast(new Point() { x = 119, y = 183 }); pointList.AddLast(new Point() { x = 123, y = 189 }); pointList.AddLast(new Point() { x = 127, y = 193 }); pointList.AddLast(new Point() { x = 129, y = 196 }); pointList.AddLast(new Point() { x = 133, y = 200 }); pointList.AddLast(new Point() { x = 137, y = 206 }); pointList.AddLast(new Point() { x = 140, y = 209 }); pointList.AddLast(new Point() { x = 143, y = 212 }); pointList.AddLast(new Point() { x = 146, y = 215 }); pointList.AddLast(new Point() { x = 151, y = 220 }); pointList.AddLast(new Point() { x = 153, y = 222 }); pointList.AddLast(new Point() { x = 155, y = 223 }); pointList.AddLast(new Point() { x = 157, y = 225 }); pointList.AddLast(new Point() { x = 158, y = 223 }); pointList.AddLast(new Point() { x = 157, y = 218 }); pointList.AddLast(new Point() { x = 155, y = 211 }); pointList.AddLast(new Point() { x = 154, y = 208 }); pointList.AddLast(new Point() { x = 152, y = 200 }); pointList.AddLast(new Point() { x = 150, y = 189 }); pointList.AddLast(new Point() { x = 148, y = 179 }); pointList.AddLast(new Point() { x = 147, y = 170 }); pointList.AddLast(new Point() { x = 147, y = 158 }); pointList.AddLast(new Point() { x = 147, y = 148 }); pointList.AddLast(new Point() { x = 147, y = 141 }); pointList.AddLast(new Point() { x = 147, y = 136 }); pointList.AddLast(new Point() { x = 144, y = 135 }); pointList.AddLast(new Point() { x = 142, y = 137 }); pointList.AddLast(new Point() { x = 140, y = 139 }); pointList.AddLast(new Point() { x = 135, y = 145 }); pointList.AddLast(new Point() { x = 131, y = 152 }); pointList.AddLast(new Point() { x = 124, y = 163 }); pointList.AddLast(new Point() { x = 116, y = 177 }); pointList.AddLast(new Point() { x = 108, y = 191 }); pointList.AddLast(new Point() { x = 100, y = 206 }); pointList.AddLast(new Point() { x = 94, y = 217 }); pointList.AddLast(new Point() { x = 91, y = 222 }); pointList.AddLast(new Point() { x = 89, y = 225 }); pointList.AddLast(new Point() { x = 87, y = 226 }); pointList.AddLast(new Point() { x = 87, y = 224 });
