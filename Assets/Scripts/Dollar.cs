@@ -187,6 +187,7 @@ public class DollarUtil
             q.x = p_.Value.x / magnitude;
             q.y = p_.Value.y / magnitude;
             p_.Value = q;
+            p_ = p_.Next;
         }
         return vector;
     }
