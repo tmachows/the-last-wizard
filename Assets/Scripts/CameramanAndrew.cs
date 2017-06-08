@@ -7,24 +7,16 @@ public class CameramanAndrew : MonoBehaviour {
     private bool _IsRecording;
     private DollarWrapper _Dollar;
 
-    [SerializeField]
-    private float _GestureResolution;
-
-    private float _GestureResolutionCounter;
-
-	// Use this for initialization
 	void Start () {
         _IsRecording = false;
         _Dollar = new DollarWrapper();
 	}
 	
-	// Update is called once per frame
 	void Update () {
         if(_IsRecording)
         {
             if (Input.GetButtonUp("Fire1"))
             {
-                Debug.Log("Stopping recording for " + _Points.Count);
                 _IsRecording = false;
                 Result res = _Dollar.Recognize(_Points);
                 if (res.matched)
@@ -36,27 +28,22 @@ public class CameramanAndrew : MonoBehaviour {
                 {
                     Debug.Log("Match failed");
                 }
-            } else //if(_GestureResolutionCounter <= 0f)
+            } else
             {
-                _GestureResolutionCounter = _GestureResolution;
+
                 Point p;
                 p.x = Input.mousePosition.x;
-                p.y = Input.mousePosition.y;
+                p.y = Input.mousePosition.y * (-1);
                 _Points.AddLast(p);
 
-            } /*else
-            {
-                _GestureResolutionCounter -= Time.deltaTime;
-            }*/
+            }
         } else if (Input.GetButtonDown("Fire1"))
         {
             Point p;
             p.x = Input.mousePosition.x;
-            p.y = Input.mousePosition.y;
+            p.y = Input.mousePosition.y * (-1);
             if (!_IsRecording)
             {
-                _GestureResolutionCounter = _GestureResolution;
-                Debug.Log("starting recording");
                 _IsRecording = true;
                 _Points = new LinkedList<Point>();
             }

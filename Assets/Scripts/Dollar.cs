@@ -328,6 +328,14 @@ public class Dollar
     public Result Recognize(LinkedList<Point> points)
     {
         points = DollarUtil.Resample(points, DollarConst.NUM_POINTS);
+        if(points.Count < DollarConst.NUM_POINTS)
+        {
+            Result resultFailed;
+            resultFailed.matched = false;
+            resultFailed.name = "None";
+            resultFailed.score = 0f;
+            return resultFailed;
+        }
         points = DollarUtil.RotateBy(points, DollarUtil.IndicativeAngle(points) * (-1));
         points = DollarUtil.ScaleTo(points, DollarConst.SQUARE_SIZE);
         points = DollarUtil.TranslateTo(points, DollarConst.ORIGIN);
