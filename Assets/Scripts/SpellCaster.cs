@@ -46,8 +46,12 @@ public class SpellCaster : MonoBehaviour
         }
     }
 
-    void Update () {
-        if (Input.GetKeyDown("a"))
+    public void CastSpell (Result result) {
+        if(!result.matched)
+        {
+            return;
+        }
+        if (result.name.Equals("circle"))
         {
             var message = new PushSpellMessage()
             {
@@ -55,7 +59,7 @@ public class SpellCaster : MonoBehaviour
             };
             CastSpell(_PushSpell, message);
         }
-        if (Input.GetKeyDown("s"))
+        else if (result.name.Equals("star"))
         {
             var message = new FireSpellMessage()
             {
@@ -64,7 +68,7 @@ public class SpellCaster : MonoBehaviour
             };
             CastSpell(_FireSpell, message);
         }
-        if (Input.GetKeyDown("d"))
+        else if (result.name.Equals("zig-zag"))
         {
             var message = new WaterSpellMessage()
             {
@@ -73,7 +77,7 @@ public class SpellCaster : MonoBehaviour
             };
             CastSpell(_WaterSpell, message);
         }
-        if (Input.GetKeyDown("f"))
+        else if (Input.GetKeyDown("delete"))
         {
             var message = new HealingSpellMessage()
             {

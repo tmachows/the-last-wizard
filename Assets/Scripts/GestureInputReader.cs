@@ -2,14 +2,16 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameramanAndrew : MonoBehaviour {
+public class GestureInputReader : MonoBehaviour {
     private LinkedList<Point> _Points;
     private bool _IsRecording;
     private DollarWrapper _Dollar;
+    private SpellCaster _SpellCaster;
 
 	void Start () {
         _IsRecording = false;
         _Dollar = new DollarWrapper();
+        _SpellCaster = GetComponent<SpellCaster>();
 	}
 	
 	void Update () {
@@ -19,15 +21,7 @@ public class CameramanAndrew : MonoBehaviour {
             {
                 _IsRecording = false;
                 Result res = _Dollar.Recognize(_Points);
-                if (res.matched)
-                {
-                    Debug.Log("result: " + res.score);
-                    Debug.Log("pattern: " + res.name);
-                }
-                else
-                {
-                    Debug.Log("Match failed");
-                }
+                _SpellCaster.CastSpell(res);
             } else
             {
 
