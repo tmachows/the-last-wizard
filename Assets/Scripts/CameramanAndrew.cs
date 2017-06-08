@@ -36,7 +36,7 @@ public class CameramanAndrew : MonoBehaviour {
                 {
                     Debug.Log("Match failed");
                 }
-            } else if(_GestureResolutionCounter <= 0f)
+            } else //if(_GestureResolutionCounter <= 0f)
             {
                 _GestureResolutionCounter = _GestureResolution;
                 Point p;
@@ -44,10 +44,10 @@ public class CameramanAndrew : MonoBehaviour {
                 p.y = Input.mousePosition.y;
                 _Points.AddLast(p);
 
-            } else
+            } /*else
             {
                 _GestureResolutionCounter -= Time.deltaTime;
-            }
+            }*/
         } else if (Input.GetButtonDown("Fire1"))
         {
             Point p;
