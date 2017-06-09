@@ -46,6 +46,18 @@ public class SpellCaster : MonoBehaviour
         }
     }
 
+    void Update()
+    {
+        if (Input.GetKeyDown("a"))
+        {
+            var message = new FireSpellMessage()
+            {
+                Sender = this
+            };
+            CastSpell(_FireSpell, message);
+        }
+    }
+
     public void CastSpell (Result result) {
         if(!result.matched)
         {

@@ -83,7 +83,7 @@ public class GestureInputReader : MonoBehaviour {
     {
         _Line.startWidth = 0.003f;
         _Line.endWidth = 0.003f;
-        _Line.numPositions = _LinePoints.Count;
+        _Line.positionCount = _LinePoints.Count;
 
         for (int i = _LineCount; i < _LinePoints.Count; i++)
         {
