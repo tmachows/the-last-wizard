@@ -2,32 +2,36 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GestureInputReader : MonoBehaviour {
+public class GestureInputReader : MonoBehaviour
+{
     private LinkedList<Point> _Points;
     private bool _IsRecording;
     private DollarWrapper _Dollar;
     private SpellCaster _SpellCaster;
 
     #region shape drawing fields
+
     private List<Vector3> _LinePoints = new List<Vector3>();
     private LineRenderer _Line;
     private Camera _Camera;
     private Vector3 _LastPos = Vector3.one * float.MaxValue;
     private float _Threshold = 0.001f;
     private int _LineCount = 0;
+
     #endregion
 
-
-    void Start () {
+    void Start()
+    {
         _IsRecording = false;
         _Dollar = new DollarWrapper();
         _SpellCaster = GetComponent<SpellCaster>();
         _Camera = Camera.main;
         _Line = gameObject.GetComponent<LineRenderer>();
     }
-	
-	void Update () {
-        if(_IsRecording)
+
+    void Update()
+    {
+        if (_IsRecording)
         {
             if (Input.GetButtonUp("Fire1"))
             {
@@ -35,7 +39,8 @@ public class GestureInputReader : MonoBehaviour {
                 Result res = _Dollar.Recognize(_Points);
                 _SpellCaster.CastSpell(res);
                 ClearLine();
-            } else
+            }
+            else
             {
                 Point p;
                 p.x = Input.mousePosition.x;
@@ -43,7 +48,8 @@ public class GestureInputReader : MonoBehaviour {
                 _Points.AddLast(p);
                 DrawLine();
             }
-        } else if (Input.GetButtonDown("Fire1"))
+        }
+        else if (Input.GetButtonDown("Fire1"))
         {
             Point p;
             p.x = Input.mousePosition.x;
@@ -54,10 +60,11 @@ public class GestureInputReader : MonoBehaviour {
                 _Points = new LinkedList<Point>();
             }
             _Points.AddLast(p);
-        } 
+        }
     }
 
     #region shape drawing functions
+
     void DrawLine()
     {
         Vector3 mousePos = Input.mousePosition;
@@ -84,7 +91,7 @@ public class GestureInputReader : MonoBehaviour {
         _Line.startWidth = 0.01f;
         _Line.endWidth = 0.01f;
 
-        _Line.positionCount = _LinePoints.Count;
+        _Line.numPositions = _LinePoints.Count;
 
         for (int i = _LineCount; i < _LinePoints.Count; i++)
         {
@@ -98,6 +105,6 @@ public class GestureInputReader : MonoBehaviour {
         _LinePoints.Clear();
         UpdateLine();
     }
-    #endregion
 
+    #endregion
 }
