@@ -2,20 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackMessage
-{}
-
-public class Weapon : MonoBehaviour
+namespace TheLastWizard
 {
-    [SerializeField] private float _Attack = 20.0f;
-    [SerializeField] private float _Range = 4.0f;
+    public class AttackMessage
+    { }
 
-    private void Receive(AttackMessage message)
+    public class Weapon : MonoBehaviour
     {
-        var damageMessage = new DamagePlayerMessage
+        [SerializeField]
+        private float _Attack = 20.0f;
+        [SerializeField]
+        private float _Range = 4.0f;
+
+        private void Receive(AttackMessage message)
         {
-            Value = _Attack
-        };
-        MessageDispatcher.Send(damageMessage, transform.position, _Range);
+            var damageMessage = new DamagePlayerMessage
+            {
+                Value = _Attack
+            };
+            MessageDispatcher.Send(damageMessage, transform.position, _Range);
+        }
     }
 }

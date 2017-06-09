@@ -2,40 +2,43 @@
 using System.Collections;
 using UnityEngine.SceneManagement;
 
-public class UIManagerScript : MonoBehaviour
+namespace TheLastWizard
 {
-
-    public int SceneToLoad;
-    public bool Sound;
-    public bool Vibrations;
-
-    public void StartGame()
+    public class UIManagerScript : MonoBehaviour
     {
-        SceneManager.LoadScene(SceneToLoad);
-    }
 
-    public void toogleSound(bool value)
-    {
-        Sound = value;
-    }
+        public int SceneToLoad;
+        public bool Sound;
+        public bool Vibrations;
 
-    public void toogleVibrations(bool value)
-    {
-        Vibrations = value;
-    }
+        public void StartGame()
+        {
+            SceneManager.LoadScene(SceneToLoad);
+        }
 
-    public void QuitApplication()
-    {
-        //If we are running in a standalone build of the game
-        //#if UNITY_STANDALONE
-        //Quit the application
-        Application.Quit();
-        //#endif
+        public void toogleSound(bool value)
+        {
+            Sound = value;
+        }
 
-        //If we are running in the editor
+        public void toogleVibrations(bool value)
+        {
+            Vibrations = value;
+        }
+
+        public void QuitApplication()
+        {
+            //If we are running in a standalone build of the game
+            //#if UNITY_STANDALONE
+            //Quit the application
+            Application.Quit();
+            //#endif
+
+            //If we are running in the editor
 #if UNITY_EDITOR
-        //Stop playing the scene
-        UnityEditor.EditorApplication.isPlaying = false;
+            //Stop playing the scene
+            UnityEditor.EditorApplication.isPlaying = false;
 #endif
+        }
     }
 }

@@ -2,28 +2,32 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DamageEnemyMessage
+namespace TheLastWizard
 {
-    public float _Value;
-}
-
-public class EnemyHealth : MonoBehaviour
-{
-
-    [SerializeField] private float _Health = 100f;
-
-    private void Receive(DamageEnemyMessage message)
+    public class DamageEnemyMessage
     {
-        _Health -= message._Value;
-        if (_Health < 0)
-        {
-            var enemyDeathMessage = new KilledEnemyMessage
-            {
-                Points = 10
-            };
-            MessageDispatcher.Send(enemyDeathMessage, transform.position, 20.0f);
+        public float _Value;
+    }
 
-            Destroy(gameObject);
+    public class EnemyHealth : MonoBehaviour
+    {
+
+        [SerializeField]
+        private float _Health = 100f;
+
+        private void Receive(DamageEnemyMessage message)
+        {
+            _Health -= message._Value;
+            if (_Health < 0)
+            {
+                var enemyDeathMessage = new KilledEnemyMessage
+                {
+                    Points = 10
+                };
+                MessageDispatcher.Send(enemyDeathMessage, transform.position, 20.0f);
+
+                Destroy(gameObject);
+            }
         }
     }
 }

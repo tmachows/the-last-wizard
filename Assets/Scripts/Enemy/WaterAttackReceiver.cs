@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WaterAttackReceiver : MonoBehaviour {
-
-    private void Receive(WaterSpellMessage message)
+namespace TheLastWizard
+{
+    public class WaterAttackReceiver : MonoBehaviour
     {
-        var damageMessage = new DamageEnemyMessage()
+
+        private void Receive(WaterSpellMessage message)
         {
-            _Value = message.Power
-        };
-        MessageDispatcher.Send(damageMessage, gameObject);
+            var damageMessage = new DamageEnemyMessage()
+            {
+                _Value = message.Power
+            };
+            MessageDispatcher.Send(damageMessage, gameObject);
+        }
     }
 }

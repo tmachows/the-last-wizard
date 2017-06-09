@@ -2,41 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PushSpellController : MonoBehaviour
+namespace TheLastWizard
 {
-
-    #region inspector variables
-    [SerializeField]
-    protected float _Duration = 5;
-    [SerializeField]
-    protected float _EndSize = 5;
-    #endregion
-
-    #region variables
-    protected float _Time = 0.0f;
-    #endregion
-
-    void Start()
+    public class PushSpellController : MonoBehaviour
     {
-        GetComponent<ParticleSystem>().Play();
-    }
+        #region inspector variables
+        [SerializeField]
+        protected float _Duration = 5;
+        [SerializeField]
+        protected float _EndSize = 5;
+        #endregion
 
-    void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 0.5f);
-    }
+        #region variables
+        protected float _Time = 0.0f;
+        #endregion
 
-    void Update()
-    {
-        if (_Time > _Duration)
+        void Start()
         {
-            Destroy(gameObject);
+            GetComponent<ParticleSystem>().Play();
         }
-        else
+
+        void OnDrawGizmos()
         {
-            _Time += Time.deltaTime;
-            transform.localScale = Vector3.one * (Mathf.Lerp(0.0f, _EndSize, _Time / _Duration));
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, 0.5f);
+        }
+
+        void Update()
+        {
+            if (_Time > _Duration)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                _Time += Time.deltaTime;
+                transform.localScale = Vector3.one * (Mathf.Lerp(0.0f, _EndSize, _Time / _Duration));
+            }
         }
     }
 }
