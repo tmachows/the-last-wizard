@@ -55,9 +55,8 @@ public class SpellCaster : MonoBehaviour
         }
     }
 
-    public void CastSpell(Result result)
-    {
-        if (!result.matched)
+    public void CastSpell (Result result) {
+        if(!result.matched)
         {
             return;
         }
@@ -126,6 +125,15 @@ public class SpellCaster : MonoBehaviour
 
     public void Update()
     {
+        if (Input.GetKeyDown("a"))
+        {
+            var message = new FireSpellMessage()
+            {
+                Sender = this
+            };
+            CastSpell(_FireSpell, message);
+        }
+
         if (_PushSpellCooldown > 0)
         {
             _PushSpellCooldown -= Time.deltaTime;
