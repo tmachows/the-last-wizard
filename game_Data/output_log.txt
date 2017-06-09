@@ -1,0 +1,74 @@
+Initialize engine version: 5.5.1p4 (f10174ef3e2d)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 950M (ID=0x139a)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+    Driver:   20.19.15.4364
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll (this message is harmless)
+Loading C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\UnityEngine.PlaymodeTestsRunner.dll into Unity Child Domain
+- Completed reload, in  0.026 seconds
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: C:\Users\drdrz\Desktop\TGK\projekt\game_Data\Managed\System.dll (this message is harmless)
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.086814 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.805530 ms
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 688.
+Total: 0.448790 ms (FindLiveObjects: 0.034370 ms CreateObjectMapping: 0.023308 ms MarkObjects: 0.169876 ms  DeleteObjects: 0.220839 ms)
+
+Setting up 2 worker threads for Enlighten.
+  Thread -> id: 3714 -> priority: 1 
+  Thread -> id: 17e8 -> priority: 1 
+Instantiating enemy WaterLumberjack on position (23.1, 0.5, 24.5) and rotation (-0.1, 1.0, 0.0, -0.2)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Instantiating enemy FireLumberjack on position (24.2, 0.3, 24.1) and rotation (-0.1, 1.0, 0.0, -0.2)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Instantiating enemy WaterLumberjack on position (23.4, 0.2, 5.6) and rotation (0.0, -0.2, 0.0, 1.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Instantiating enemy WaterLumberjack on position (10.2, 0.0, 13.0) and rotation (0.0, 0.6, 0.0, 0.8)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Instantiating enemy FireLumberjack on position (18.1, 0.3, 5.2) and rotation (0.0, 0.1, 0.0, 1.0)
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+health < 0
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Game Over Message to GameOverController
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Player score received howmanypointsmessage
+ 
+(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/DebugBindings.gen.cpp Line: 51)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.962765 ms
+
+Unloading 302 unused Assets to reduce memory usage. Loaded Objects now: 365.
+Total: 2.366024 ms (FindLiveObjects: 0.030419 ms CreateObjectMapping: 0.024493 ms MarkObjects: 0.207012 ms  DeleteObjects: 2.103703 ms)
+

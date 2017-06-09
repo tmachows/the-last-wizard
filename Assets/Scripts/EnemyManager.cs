@@ -23,7 +23,6 @@ public class EnemyManager : MonoBehaviour
         Vector3 position = RandomCircle(_WizardPosition, _Radius);
         Quaternion rotation = Quaternion.FromToRotation(Vector3.forward, _WizardPosition - position);
         GameObject enemy = _Enemies[Random.Range(0, _Enemies.Length)];
-        Debug.Log("Instantiating enemy " + enemy.name + " on position " + position + " and rotation " + rotation);
         GameObject spawnedEnemy = Instantiate(enemy, position, rotation);
         spawnedEnemy.GetComponent<EnemyMover>().SetWizardPosition(_WizardPosition);
     }

@@ -63,7 +63,7 @@ public class GestureInputReader : MonoBehaviour {
         Vector3 mousePos = Input.mousePosition;
         mousePos.z = _Camera.nearClipPlane;
         Vector3 mouseWorld = _Camera.ScreenToWorldPoint(mousePos);
-        mouseWorld.z = _Camera.nearClipPlane;
+        mouseWorld.z = _Camera.nearClipPlane + mouseWorld.y * 0.01f;
 
         float dist = Vector3.Distance(_LastPos, mouseWorld);
         if (dist <= _Threshold)
@@ -72,7 +72,7 @@ public class GestureInputReader : MonoBehaviour {
         _LastPos = mouseWorld;
         if (_LinePoints == null)
             _LinePoints = new List<Vector3>();
-        mouseWorld = mouseWorld + Vector3.forward * 3;
+        mouseWorld = mouseWorld + Vector3.forward * 7f + Vector3.down * 0.1f;
         _LinePoints.Add(mouseWorld);
 
         UpdateLine();
@@ -81,8 +81,8 @@ public class GestureInputReader : MonoBehaviour {
 
     void UpdateLine()
     {
-        _Line.startWidth = 0.003f;
-        _Line.endWidth = 0.003f;
+        _Line.startWidth = 0.01f;
+        _Line.endWidth = 0.01f;
         _Line.numPositions = _LinePoints.Count;
 
         for (int i = _LineCount; i < _LinePoints.Count; i++)

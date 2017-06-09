@@ -37,6 +37,15 @@ public class SpellCaster : MonoBehaviour
     [SerializeField] private float _FirePower = 30.0f;
     [SerializeField] private float _WaterPower = 30.0f;
     [SerializeField] private float _HealingPower = 10.0f;
+    [SerializeField] private float _BaseCooldown = 3.0f;
+    [SerializeField] private float _PushSpellCooldown = 0.0f;
+    [SerializeField] private float _FireSpellCooldown = 0.0f;
+    [SerializeField] private float _WaterSpellCooldown = 0.0f;
+    [SerializeField] private float _HealingSpellCooldown = 0.0f;
+    [SerializeField] private Animator _PushSpellAnimator;
+    [SerializeField] private Animator _FireSpellAnimator;
+    [SerializeField] private Animator _WaterSpellAnimator;
+    [SerializeField] private Animator _HealingSpellAnimator;
 
     void Awake()
     {
@@ -46,51 +55,92 @@ public class SpellCaster : MonoBehaviour
         }
     }
 
-    public void CastSpell (Result result) {
-        if(!result.matched)
+    public void CastSpell(Result result)
+    {
+        if (!result.matched)
         {
             return;
         }
-        if (result.name.Equals("circle"))
+        if (result.name.Equals("v"))
         {
-            var message = new PushSpellMessage()
+            if (_PushSpellCooldown <= 0)
             {
-                Sender = this
-            };
-            CastSpell(_PushSpell, message);
+                var message = new PushSpellMessage()
+                {
+                    Sender = this
+                };
+                CastSpell(_PushSpell, message);
+                _PushSpellCooldown = _BaseCooldown;
+                _PushSpellAnimator.SetTrigger("SpellCasted");
+            }
         }
-        else if (result.name.Equals("star"))
+        else if (result.name.Equals("caret"))
         {
-            var message = new FireSpellMessage()
+            if (_FireSpellCooldown <= 0)
             {
-                Sender = this,
-                Power = _FirePower
-            };
-            CastSpell(_FireSpell, message);
+                var message = new FireSpellMessage()
+                {
+                    Sender = this,
+                    Power = _FirePower
+                };
+                CastSpell(_FireSpell, message);
+                _FireSpellCooldown = _BaseCooldown;
+                _FireSpellAnimator.SetTrigger("SpellCasted");
+            }
         }
-        else if (result.name.Equals("zig-zag"))
+        else if (result.name.Equals("circle"))
         {
-            var message = new WaterSpellMessage()
+            if (_WaterSpellCooldown <= 0)
             {
-                Sender = this,
-                Power = _WaterPower
-            };
-            CastSpell(_WaterSpell, message);
+                var message = new WaterSpellMessage()
+                {
+                    Sender = this,
+                    Power = _WaterPower
+                };
+                CastSpell(_WaterSpell, message);
+                _WaterSpellCooldown = _BaseCooldown;
+                _WaterSpellAnimator.SetTrigger("SpellCasted");
+            }
         }
-        else if (Input.GetKeyDown("delete"))
+        else if (result.name.Equals("rectangle"))
         {
-            var message = new HealingSpellMessage()
+            if (_HealingSpellCooldown <= 0)
             {
-                Sender = this,
-                Value = _HealingPower
-            };
-            CastSpell(_HealingSpell, message);
-        }	
-	}
+                var message = new HealingSpellMessage()
+                {
+                    Sender = this,
+                    Value = _HealingPower
+                };
+                CastSpell(_HealingSpell, message);
+                _HealingSpellCooldown = _BaseCooldown;
+                _HealingSpellAnimator.SetTrigger("SpellCasted");
+            }
+        }
+    }
 
-    void CastSpell<T>(GameObject spell, T message) where T: class
+    void CastSpell<T>(GameObject spell, T message) where T : class
     {
         Instantiate(spell, transform.position, Quaternion.Euler(90f, 0f, 0f));
         MessageDispatcher.Send(message, transform.position, _Radius);
+    }
+
+    public void Update()
+    {
+        if (_PushSpellCooldown > 0)
+        {
+            _PushSpellCooldown -= Time.deltaTime;
+        }
+        if (_FireSpellCooldown > 0)
+        {
+            _FireSpellCooldown -= Time.deltaTime;
+        }
+        if (_WaterSpellCooldown > 0)
+        {
+            _WaterSpellCooldown -= Time.deltaTime;
+        }
+        if (_HealingSpellCooldown > 0)
+        {
+            _HealingSpellCooldown -= Time.deltaTime;
+        }
     }
 }
