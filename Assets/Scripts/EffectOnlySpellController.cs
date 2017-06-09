@@ -35,11 +35,6 @@ public class EffectOnlySpellController : MonoBehaviour {
         else
         {
             _Time += Time.deltaTime;
-            OtherEffect();
         }
-    }
-
-    void OtherEffect()
-    {
     }
 }
