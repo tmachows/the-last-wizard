@@ -60,3 +60,6 @@ log-*
 /.vs
 CryptographicExceptions/
 
+#builded apk
+*.apk
+

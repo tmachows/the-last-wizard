@@ -93,7 +93,7 @@ namespace TheLastWizard
             _Line.startWidth = 0.01f;
             _Line.endWidth = 0.01f;
 
-            _Line.numPositions = _LinePoints.Count;
+            _Line.positionCount = _LinePoints.Count;
 
             for (int i = _LineCount; i < _LinePoints.Count; i++)
             {
