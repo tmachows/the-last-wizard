@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TheLastWizard
 {
@@ -22,7 +23,27 @@ namespace TheLastWizard
 
         #endregion
 
+        #region device camera fields
+
+        private bool _CamAvailable;
+        private WebCamTexture _FrontCam;
+        private Texture _DefaultBackground;
+
+        public RawImage _Background;
+        public AspectRatioFitter _Fit;
+
+        #endregion
+
         void Start()
+        {
+            InitCameraInputReading();
+            if (!_CamAvailable)
+            {
+                InitScreenInputReading();
+            }
+        }
+
+        private void InitScreenInputReading()
         {
             _IsRecording = false;
             _Dollar = new DollarWrapper();
@@ -31,7 +52,62 @@ namespace TheLastWizard
             _Line = gameObject.GetComponent<LineRenderer>();
         }
 
+        private void InitCameraInputReading()
+        {
+            _DefaultBackground = _Background.texture;
+            WebCamDevice[] devices = WebCamTexture.devices;
+
+            if (devices.Length == 0)
+            {
+                Debug.Log("No camera detected");
+                _CamAvailable = false;
+                return;
+            }
+
+            foreach (var webCamDevice in devices)
+            {
+                if (webCamDevice.isFrontFacing)
+                {
+                    _FrontCam = new WebCamTexture(webCamDevice.name, Screen.width, Screen.height);
+                }
+            }
+
+            if (_FrontCam == null)
+            {
+                Debug.Log("Unable to find front camera");
+                return;
+            }
+
+            _FrontCam.Play();
+            _Background.texture = _FrontCam;
+
+            _CamAvailable = true;
+        }
+
         void Update()
+        {
+            if (_CamAvailable)
+            {
+                ReadCameraInput();
+            }
+            ReadScreenInput();
+        }
+
+        private void ReadCameraInput()
+        {
+            float ratio = (float) _FrontCam.width / (float) _FrontCam.height;
+//            _Fit.aspectRatio = ratio;
+
+            float scaleY = _FrontCam.videoVerticallyMirrored ? -1f : 1f;
+            _Background.rectTransform.localScale = new Vector3(1f, scaleY, 1f);
+
+            int orient = - _FrontCam.videoRotationAngle;
+            _Background.rectTransform.localEulerAngles = new Vector3(0, 0, orient);
+
+            Debug.Log(_FrontCam.GetPixels().Length);
+        }
+
+        private void ReadScreenInput()
         {
             if (_IsRecording)
             {
@@ -93,7 +169,7 @@ namespace TheLastWizard
             _Line.startWidth = 0.01f;
             _Line.endWidth = 0.01f;
 
-            _Line.positionCount = _LinePoints.Count;
+            _Line.numPositions = _LinePoints.Count;
 
             for (int i = _LineCount; i < _LinePoints.Count; i++)
             {
