@@ -15,10 +15,12 @@ namespace TheLastWizard {
         }
 
         public void StartRecording() {
+            Debug.LogFormat("{0}: Starting recording", name);
             StartCoroutine(InputCoroutine());
         }
 
         public void StopRecording() {
+            Debug.LogFormat("{0}: Stopping recording with {1} points", name, points.Count);
             isRecording = false;
             gestureInputReader.InterpretInput(points);
             lineDrawer.ClearLine();
