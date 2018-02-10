@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,32 +7,19 @@ namespace TheLastWizard {
         bool isRecording;
 
         void Update() {
-            if (Input.GetButtonDown("Fire1"))
-                StartCoroutine(ScreenInputCoroutine());
+            const string FIRE_1 = "Fire1";
+
+            if (Input.GetButtonDown(FIRE_1))
+                StartRecording();
+            else if (Input.GetButtonUp(FIRE_1))
+                StopRecording();
         }
 
-        public override void Initialize() {
-            base.Initialize();
-            isRecording = false;
-        }
-
-        IEnumerator ScreenInputCoroutine() {
-            isRecording = true;
-            points = new LinkedList<Point>();
-            while (isRecording) {
-                if (Input.GetButtonUp("Fire1")) {
-                    isRecording = false;
-                    gestureInputReader.InterpretInput(points);
-                    lineDrawer.ClearLine();
-                } else {
-                    Point p;
-                    p.x = Input.mousePosition.x;
-                    p.y = Input.mousePosition.y * (-1);
-                    points.AddLast(p);
-                    lineDrawer.DrawLine();
-                }
-                yield return null;
-            }
+        protected override Point GetCurrentInput() {
+            Point p;
+            p.x = Input.mousePosition.x;
+            p.y = Input.mousePosition.y * (-1);
+            return p;
         }
     }
 }
