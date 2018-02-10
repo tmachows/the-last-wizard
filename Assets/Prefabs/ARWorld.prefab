@@ -37,6 +37,7 @@ GameObject:
   - component: {fileID: 4461471057072234}
   - component: {fileID: 20717622979004188}
   - component: {fileID: 114946322836760826}
+  - component: {fileID: 114713133329533120}
   m_Layer: 10
   m_Name: ARCamera
   m_TagString: MainCamera
@@ -157,7 +158,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 1024
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -234,6 +235,18 @@ MonoBehaviour:
   secondsToRemainVisible: 0
   eventReceiver: {fileID: 0}
   _markerTag: hiro
+--- !u!114 &114713133329533120
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1123160339312600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2d3d7d8e26b2b74fb1b53ab06a47291, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputSource: {fileID: 0}
 --- !u!114 &114836477453527018
 MonoBehaviour:
   m_ObjectHideFlags: 1
