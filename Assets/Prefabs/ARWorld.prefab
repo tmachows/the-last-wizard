@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secondsToRemainVisible: 0
-  eventReceiver: {fileID: 0}
+  eventReceiver: {fileID: 1123160339312600}
   _markerTag: hiro
 --- !u!114 &114713133329533120
 MonoBehaviour:
