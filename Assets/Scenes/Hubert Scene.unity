@@ -350,16 +350,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 114849219841305750, guid: aba04b438ed4d3049bf9fd27d14a7d99,
-        type: 2}
-      propertyPath: drawingCamera
-      value: 
-      objectReference: {fileID: 770498030}
-    - target: {fileID: 114305725108629510, guid: aba04b438ed4d3049bf9fd27d14a7d99,
-        type: 2}
-      propertyPath: _Canvas
-      value: 
-      objectReference: {fileID: 52872476}
     - target: {fileID: 114566743393731936, guid: aba04b438ed4d3049bf9fd27d14a7d99,
         type: 2}
       propertyPath: _PushSpellAnimator
@@ -380,6 +370,16 @@ Prefab:
       propertyPath: _HealingSpellAnimator
       value: 
       objectReference: {fileID: 1066429315}
+    - target: {fileID: 114305725108629510, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: _Canvas
+      value: 
+      objectReference: {fileID: 52872476}
+    - target: {fileID: 114849219841305750, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: drawingCamera
+      value: 
+      objectReference: {fileID: 770498030}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba04b438ed4d3049bf9fd27d14a7d99, type: 2}
   m_IsPrefabParent: 0
