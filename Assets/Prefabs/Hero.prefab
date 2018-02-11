@@ -1970,6 +1970,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gestureInputReader: {fileID: 114107430576511832}
   lineDrawer: {fileID: 114849219841305750}
+  trackedObject: {fileID: 0}
+  aRCamera: {fileID: 0}
 --- !u!114 &114849219841305750
 MonoBehaviour:
   m_ObjectHideFlags: 1
