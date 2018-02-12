@@ -113,6 +113,11 @@ Canvas:
   m_PrefabParentObject: {fileID: 223921735995883844, guid: 28fec5b6929e9324591d44955aae2fd5,
     type: 2}
   m_PrefabInternal: {fileID: 1641632907}
+--- !u!20 &297259375 stripped
+Camera:
+  m_PrefabParentObject: {fileID: 20717622979004188, guid: dab7b9afae29e7b4eb8e1ab4d62dce03,
+    type: 2}
+  m_PrefabInternal: {fileID: 1678688017}
 --- !u!1 &324191742 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1046864048606182, guid: aba04b438ed4d3049bf9fd27d14a7d99,
@@ -306,11 +311,6 @@ Animator:
   m_PrefabParentObject: {fileID: 95346997641959400, guid: 28fec5b6929e9324591d44955aae2fd5,
     type: 2}
   m_PrefabInternal: {fileID: 1641632907}
---- !u!4 &1071710241 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4461471057072234, guid: dab7b9afae29e7b4eb8e1ab4d62dce03,
-    type: 2}
-  m_PrefabInternal: {fileID: 1678688017}
 --- !u!95 &1180385856 stripped
 Animator:
   m_PrefabParentObject: {fileID: 95127927332695774, guid: 28fec5b6929e9324591d44955aae2fd5,
@@ -355,6 +355,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 114849219841305750, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: drawingCamera
+      value: 
+      objectReference: {fileID: 770498030}
+    - target: {fileID: 114305725108629510, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: _Canvas
+      value: 
+      objectReference: {fileID: 52872476}
     - target: {fileID: 114566743393731936, guid: aba04b438ed4d3049bf9fd27d14a7d99,
         type: 2}
       propertyPath: _PushSpellAnimator
@@ -375,26 +385,16 @@ Prefab:
       propertyPath: _HealingSpellAnimator
       value: 
       objectReference: {fileID: 1066429315}
-    - target: {fileID: 114305725108629510, guid: aba04b438ed4d3049bf9fd27d14a7d99,
-        type: 2}
-      propertyPath: _Canvas
-      value: 
-      objectReference: {fileID: 52872476}
-    - target: {fileID: 114849219841305750, guid: aba04b438ed4d3049bf9fd27d14a7d99,
-        type: 2}
-      propertyPath: drawingCamera
-      value: 
-      objectReference: {fileID: 770498030}
-    - target: {fileID: 114744917299986968, guid: aba04b438ed4d3049bf9fd27d14a7d99,
-        type: 2}
-      propertyPath: aRCamera
-      value: 
-      objectReference: {fileID: 1071710241}
     - target: {fileID: 114744917299986968, guid: aba04b438ed4d3049bf9fd27d14a7d99,
         type: 2}
       propertyPath: trackedObject
       value: 
       objectReference: {fileID: 1670438506}
+    - target: {fileID: 114744917299986968, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: aRCamera
+      value: 
+      objectReference: {fileID: 297259375}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba04b438ed4d3049bf9fd27d14a7d99, type: 2}
   m_IsPrefabParent: 0
@@ -624,6 +624,18 @@ Prefab:
       propertyPath: inputSource
       value: 
       objectReference: {fileID: 1437941226}
+    - target: {fileID: 4706128867954070, guid: dab7b9afae29e7b4eb8e1ab4d62dce03, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.015625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706128867954070, guid: dab7b9afae29e7b4eb8e1ab4d62dce03, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.015625
+      objectReference: {fileID: 0}
+    - target: {fileID: 4706128867954070, guid: dab7b9afae29e7b4eb8e1ab4d62dce03, type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.015625
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: dab7b9afae29e7b4eb8e1ab4d62dce03, type: 2}
   m_IsPrefabParent: 0
