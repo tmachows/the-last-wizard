@@ -34,7 +34,6 @@ namespace TheLastWizard {
         }
 
         void FixVideoSource() {
-            //FindComponent<Renderer>(VIDEO_SOURCE_NAME).enabled = false;
             var video = GameObject.Find(VIDEO_SOURCE_NAME).transform;
             video.localScale = new Vector3(.25f, .25f, 1f);
             video.localPosition = new Vector3(0f, .75f, 0f);
