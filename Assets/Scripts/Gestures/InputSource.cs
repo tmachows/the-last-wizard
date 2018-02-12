@@ -30,8 +30,9 @@ namespace TheLastWizard {
             isRecording = true;
             points = new LinkedList<Point>();
             while (isRecording) {
-                points.AddLast(GetCurrentInput());
-                lineDrawer.DrawLine();
+                var currentInput = GetCurrentInput();
+                points.AddLast(currentInput);
+                lineDrawer.DrawLine(currentInput);
                 yield return null;
             }
         }

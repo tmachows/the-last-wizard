@@ -16,21 +16,20 @@ namespace TheLastWizard {
                 drawingCamera = Camera.main;
         }
 
-        public void DrawLine() {
-            Vector3 mousePos = Input.mousePosition;
-            mousePos.z = drawingCamera.nearClipPlane;
-            Vector3 mouseWorld = drawingCamera.ScreenToWorldPoint(mousePos);
-            mouseWorld.z = drawingCamera.nearClipPlane + mouseWorld.y * 0.01f;
+        public void DrawLine(Point currentInput) {
+            Vector3 inputPos = new Vector3(currentInput.x, currentInput.y * (-1), drawingCamera.nearClipPlane);
+            Vector3 inputWorld = drawingCamera.ScreenToWorldPoint(inputPos);
+            inputWorld.z = drawingCamera.nearClipPlane + inputWorld.y * 0.01f;
 
-            float dist = Vector3.Distance(lastPosition, mouseWorld);
+            float dist = Vector3.Distance(lastPosition, inputWorld);
             if (dist <= threshold)
                 return;
 
-            lastPosition = mouseWorld;
+            lastPosition = inputWorld;
             if (linePoints == null)
                 linePoints = new List<Vector3>();
-            mouseWorld = mouseWorld + Vector3.forward * 7f + Vector3.down * 0.1f;
-            linePoints.Add(mouseWorld);
+            inputWorld = inputWorld + Vector3.forward * 7f + Vector3.down * 0.1f;
+            linePoints.Add(inputWorld);
 
             UpdateLine();
         }
