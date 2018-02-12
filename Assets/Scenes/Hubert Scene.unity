@@ -306,6 +306,11 @@ Animator:
   m_PrefabParentObject: {fileID: 95346997641959400, guid: 28fec5b6929e9324591d44955aae2fd5,
     type: 2}
   m_PrefabInternal: {fileID: 1641632907}
+--- !u!4 &1071710241 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4461471057072234, guid: dab7b9afae29e7b4eb8e1ab4d62dce03,
+    type: 2}
+  m_PrefabInternal: {fileID: 1678688017}
 --- !u!95 &1180385856 stripped
 Animator:
   m_PrefabParentObject: {fileID: 95127927332695774, guid: 28fec5b6929e9324591d44955aae2fd5,
@@ -380,6 +385,16 @@ Prefab:
       propertyPath: drawingCamera
       value: 
       objectReference: {fileID: 770498030}
+    - target: {fileID: 114744917299986968, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: aRCamera
+      value: 
+      objectReference: {fileID: 1071710241}
+    - target: {fileID: 114744917299986968, guid: aba04b438ed4d3049bf9fd27d14a7d99,
+        type: 2}
+      propertyPath: trackedObject
+      value: 
+      objectReference: {fileID: 1670438506}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: aba04b438ed4d3049bf9fd27d14a7d99, type: 2}
   m_IsPrefabParent: 0
@@ -560,6 +575,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 28fec5b6929e9324591d44955aae2fd5, type: 2}
   m_IsPrefabParent: 0
+--- !u!4 &1670438506 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4921111702787382, guid: dab7b9afae29e7b4eb8e1ab4d62dce03,
+    type: 2}
+  m_PrefabInternal: {fileID: 1678688017}
 --- !u!1001 &1678688017
 Prefab:
   m_ObjectHideFlags: 0
