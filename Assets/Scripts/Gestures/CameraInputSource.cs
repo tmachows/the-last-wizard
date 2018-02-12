@@ -5,7 +5,20 @@ using UnityEngine;
 namespace TheLastWizard {
     public class CameraInputSource : InputSource {
         [SerializeField] Transform trackedObject;
-        [SerializeField] Transform aRCamera;
+        [SerializeField] Camera aRCamera;
+
+        Func<Point, Point> trans;
+
+        void Awake() {
+            int centerX = Screen.width / 2;
+            int centerY = Screen.height / 2;
+            trans = point => {
+                Point result;
+                result.x = (point.x - centerX) * 2 + centerX;
+                result.y = (point.y + centerY) * 2 - centerY;
+                return result;
+            };
+        }
 
         public void MarkerFound() {
             StartRecording();
@@ -16,13 +29,11 @@ namespace TheLastWizard {
         }
 
         protected override Point GetCurrentInput() {
-            var positionDiff = trackedObject.position - aRCamera.position;
-            Debug.Log(positionDiff);
-
-            Point point;//TODO
-            point.x = 0;
-            point.y = 0;
-            return point;
+            var screenPosition = aRCamera.WorldToScreenPoint(trackedObject.position);
+            Point point;
+            point.x = screenPosition.x;
+            point.y = screenPosition.y * (-1);
+            return trans(point);
         }
     }
 }
